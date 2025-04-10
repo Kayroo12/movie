@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Untitled</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WatchMate</title>
+  <link rel="stylesheet" href="style.css"> <!-- Підключення CSS -->
+</head>
+
+<body>
+  <h1>🎥 Watch with pleasure</h1>
+  <p>Вибери настрій:</p>
+  <select id="mood">
+    <option value="Весело">Весело</option>
+    <option value="Сумно">Сумно</option>
+    <option value="Драйв">Драйв</option>
+    <option value="Страшно">Страшно</option>
+  </select>
+  <p>Скільки маєш часу (хв):</p>
+  <input type="number" id="time" placeholder="Введіть час">
+  <button onclick="recommend()">Рекомендувати</button>
+
+  <p id="result"></p>
+
+  <script>
+    const movies = {
+      "Весело": [{
+          "назва": "Джуманджі",
+          "час": 120
+        },
+        {
+          "назва": "Містер Бін",
+          "час": 30
+        },
+        {
+          "назва": "Суперперці",
+          "час": 113
+        }
+      ],
+      "Сумно": [{
+          "назва": "Хатіко",
+          "час": 90
+        },
+        {
+          "назва": "Зелена миля",
+          "час": 180
+        },
+        {
+          "назва": "Щоденник пам’яті",
+          "час": 120
+        }
+      ],
+      "Драйв": [{
+          "назва": "Форсаж",
+          "час": 100
+        },
+        {
+          "назва": "Месники",
+          "час": 140
+        },
+        {
+          "назва": "Темний лицар",
+          "час": 152
+        }
+      ],
+      "Страшно": [{
+          "назва": "Закляття",
+          "час": 110
+        },
+        {
+          "назва": "Астрал",
+          "час": 90
+        },
+        {
+          "назва": "Пила",
+          "час": 100
+        }
+      ]
+    };
+
+    function recommend() {
+      const mood = document.getElementById("mood").value;
+      const time = parseInt(document.getElementById("time").value);
+      const moviesForMood = movies[mood];
+      const availableMovies = moviesForMood.filter(movie => movie.час <= time);
+      const result = document.getElementById("result");
+      if (availableMovies.length > 0) {
+        const randomMovie = availableMovies[Math.floor(Math.random() * availableMovies.length)];
+        result.textContent = `Рекомендація: ${randomMovie.назва} (${randomMovie.час} хв)`;
+      } else {
+        result.textContent = "Немає фільмів для цього часу 😥";
+      }
+    }
+  </script>
+</body>
+
+</html>
+<!-- partial -->
+  
+</body>
+</html>
